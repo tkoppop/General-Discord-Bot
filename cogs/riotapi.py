@@ -1,4 +1,5 @@
 from riotwatcher import LolWatcher
+
 key = 'RGAPI-d2347ac6-9736-49f7-b191-1b081f1ba264'
 watcher = LolWatcher(key)
 
@@ -22,5 +23,3 @@ def printStats(summonerName):
     print(stats)
     print(summonerName +" is currently ranked in " + str(tier), str(rank) +" with " + str(lp) + "LP and a " + str(wr) + "% winrate.")
 
-
-printStats("marcø")
