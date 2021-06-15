@@ -8,13 +8,23 @@ client = commands.Bot(command_prefix = '.')
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
 
+@client.event
+async def on_command_error(ctx,error):
+    if isinstance(error,commands.CommandNotFound):
+        await ctx.send('Invalid command used.')
+
 @client.command()
 async def ping(ctx):
     await ctx.send(f'Pong! {round(client.latency*1000)}ms')
 
 @client.command()
-async def clear(ctx, amount=5):
+async def clear(ctx, amount : int):
     await ctx.channel.purge(limit=amount)
+
+@clear.error
+async def clear_error(ctx, error):
+    if isinstance(error,commands.MissingRequiredArguments):
+        await ctx.send('Please specify an amount of message to delete.')
 
 @client.command()
 async def kick(ctx,member : discord.Member, *, reason=None):
@@ -65,4 +75,4 @@ async def _8ball(ctx, *, question):
     await ctx.send(f'Question: {question}\nAnswer: {random.choice(responses)}')
 
 
-client.run('ODU0MTI5MTgyNjQ3NTE3MTg1.YMfbyg.OL2mrQACSV83A1miVYty4p8u9xk')
+client.run('')
