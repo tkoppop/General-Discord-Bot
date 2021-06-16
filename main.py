@@ -32,7 +32,7 @@ async def clear_error(ctx, error):
         await ctx.send('Please specify an amount of message to delete.')
 
 @client.command(aliases=['pstats'])
-async def p(ctx, summonerName : str):
+async def p(ctx, *,summonerName):
     summoner = watcher.summoner.by_name('na1',summonerName)
     stats = watcher.league.by_summoner('na1', summoner['id'])
     num = 0
